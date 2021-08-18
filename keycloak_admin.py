@@ -1,6 +1,8 @@
 from keycloak import KeycloakAdmin
 import os
 
+# When creating realms, users or otherwise, make sure that they are enabled.
+
 cmnd = os.popen("gp url 8080")
 gitpod_url = cmnd.read().strip() + "/auth/"
 
