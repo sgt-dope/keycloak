@@ -2,6 +2,7 @@ from flask import Flask
 from flask_oidc import OpenIDConnect
 import os
 
+
 app = Flask(__name__)
 
 
