@@ -4,11 +4,13 @@ import os
 
 app = Flask(__name__)
 
-cmnd = os.popen("gp url 8080")
-gitpod_url = cmnd.read().strip()
+
+cmnd = os.popen("gp url 5000")
+app_url = cmnd.read().strip()
 
 app.config.update({
     'SECRET_KEY': '86a621e9fa20b43512728114aee763879efd3803e84a2034',
+    'OVERWRITE_REDIRECT_URI' : app_url+"/oidc_callback",
     'TESTING': True,
     'DEBUG': True,
     'OIDC_CLIENT_SECRETS': 'client_secrets.json',
@@ -31,6 +33,11 @@ def index():
 def login():
     return "Welcome to this top secret page"
 
+
+@app.route('/logout')
+def logout():
+    oidc.logout()
+    return 'Hi, you have been logged out! <a href="/">Return</a>'
 
 if __name__ == "__main__":
     app.run()

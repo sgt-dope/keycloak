@@ -28,7 +28,7 @@ client_secrets = {
         "token_introspection_uri": gitpod_url + "/auth/realms/" + realm_name + "/protocol/openid-connect/token/introspect"
     }
 }
-jsonString = json.dumps(client_secrets)
+jsonString = json.dumps(client_secrets, indent=4)
 jsonFile = open("client_secrets.json", "w")
 jsonFile.write(jsonString)
 jsonFile.close()

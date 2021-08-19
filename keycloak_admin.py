@@ -16,8 +16,13 @@ keycloak_admin = KeycloakAdmin(server_url=gitpod_url,
 
 
 realm_name = "flask-demo"
+# the name that will be displayed in the login page
+display_name = "My Webapp"
+
 keycloak_admin.create_realm(payload={"realm": "flask-demo",
-                                    "enabled" : True}, skip_exists=False)
+                                    "enabled" : True,
+                                    "displayName": display_name,
+                                    }, skip_exists=False)
 
 keycloak_admin.realm_name = realm_name
 
@@ -35,4 +40,6 @@ new_user = keycloak_admin.create_user({"email": "kenannakola@hotmail.com",
                     "username": "kenannakola@hotmail.com",
                     "enabled": True,
                     "firstName": "Kenan",
-                    "lastName": "Alnakoula"})
+                    "lastName": "Alnakoula",
+                    "credentials": [{"value": "1234","type": "password", "temporary": False}],
+                    })
