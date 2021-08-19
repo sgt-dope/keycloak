@@ -9,8 +9,8 @@ cmnd = os.popen("gp url 5000")
 app_url = cmnd.read().strip()
 
 app.config.update({
-    'SECRET_KEY': '86a621e9fa20b43512728114aee763879efd3803e84a2034',
-    'OVERWRITE_REDIRECT_URI' : app_url+"/oidc_callback",
+    'SECRET_KEY': os.environ.get("SECRET_KEY"),
+    'OVERWRITE_REDIRECT_URI' : os.environ.get("OVERWRITE_REDIRECT_URI"),
     'TESTING': True,
     'DEBUG': True,
     'OIDC_CLIENT_SECRETS': 'client_secrets.json',
@@ -40,4 +40,4 @@ def logout():
     return 'Hi, you have been logged out! <a href="/">Return</a>'
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
