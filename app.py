@@ -39,5 +39,7 @@ def logout():
     oidc.logout()
     return 'Hi, you have been logged out! <a href="/">Return</a>'
 
+
+# Adding the host 0.0.0.0 is very important. this will ensure that the app will get the local IP of the gitpod and not my localhost.
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
